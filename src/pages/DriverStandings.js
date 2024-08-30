@@ -3,18 +3,26 @@ import React, { useEffect, useState } from 'react';
 
 const DriverStandings = () => {
   const [standings, setStandings] = useState([]);
+  const cacheKey = 'CHNAE_THIS_KEY';
 
   useEffect(() => {
-    const fetchStandings = async () => {
-      try {
-        const response = await axios.get('http://ergast.com/api/f1/current/driverStandings.json');
-        setStandings(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
-      } catch (error) {
-        console.error('Error fetching driver standings', error);
-      }
-    };
+    const cachedData = localStorage.getItem(cacheKey);
 
-    fetchStandings();
+    if (cachedData) {
+      setStandings(JSON.parse(cachedData));
+    } else {
+      const fetchStandings = async () => {
+        try {
+          const response = await axios.get('http://ergast.com/api/f1/current/driverStandings.json');
+          setStandings(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+          localStorage.setItem(cacheKey, JSON.stringify(response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings));
+        } catch (error) {
+          console.error('Error fetching driver standings', error);
+        }
+      };
+
+      fetchStandings();
+    }
   }, []);
 
   return (
@@ -44,6 +52,6 @@ const DriverStandings = () => {
       </table>
     </div>
   );
-};
+}
 
 export default DriverStandings;

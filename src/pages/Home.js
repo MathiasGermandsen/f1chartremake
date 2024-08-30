@@ -3,18 +3,27 @@ import React, { useEffect, useState } from 'react';
 
 const Home = () => {
   const [races, setRaces] = useState([]);
+  const cacheKey = 'Change_THIS_KEY';
 
   useEffect(() => {
-    const fetchRaces = async () => {
-      try {
-        const response = await axios.get('http://ergast.com/api/f1/2024.json');
-        setRaces(response.data.MRData.RaceTable.Races);
-      } catch (error) {
-        console.error('Error fetching the races', error);
-      }
-    };
+    const cachedData = localStorage.getItem(cacheKey);
 
-    fetchRaces();
+    if (cachedData) {
+      setRaces(JSON.parse(cachedData));
+    } else {
+      const fetchRaces = async () => {
+        try {
+          const response = await axios.get('http://ergast.com/api/f1/2024.json');
+          const raceData = response.data.MRData.RaceTable.Races;
+          setRaces(raceData);
+          localStorage.setItem(cacheKey, JSON.stringify(raceData));
+        } catch (error) {
+          console.error('Error fetching the races', error);
+        }
+      };
+
+      fetchRaces();
+    }
   }, []);
 
   const getUpcomingRaceIndex = () => {
@@ -32,7 +41,7 @@ const Home = () => {
           <div
             key={index}
             className={`p-4 rounded-lg ${index === upcomingRaceIndex
-              ? 'bg-red-400 text-black'
+              ? 'bg-red-500 text-black'  // Highlight the upcoming race with a red background
               : 'bg-gray-800 dark:bg-gray-900 text-white dark:text-black'
               }`}
           >
