@@ -24,11 +24,11 @@ To get started with the F1 Stats Web Application, follow these steps:
 1. **Clone the Repository:**
 
    ```bash
-    git clone https://github.com/your-username/f1-stats-webapp.git
+    git clone https://github.com/your-username/f1chartremake.git
 
 2. **Navigate to the Project Directory:**
     ```bash
-      cd f1-stats-webapp
+      cd f1chartremake
 
 3. **Install Dependencies:**
     Make sure you have Node.js installed, then run:
@@ -46,5 +46,3 @@ To get started with the F1 Stats Web Application, follow these steps:
 Ergast API: Provides race schedules and driver standings.
  - Race schedules: http://ergast.com/api/f1/2024.json
  - Driver standings: http://ergast.com/api/f1/current/driverStandings.json
-
-
