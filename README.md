@@ -8,7 +8,7 @@ Welcome to the **F1 Stats Web Application**! This project is a responsive, dark 
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [Installation](#installation)
-  - [Running the Application](#running-the-application)
+  - [API Used](#api-used)
 
 ## Features
 
@@ -32,20 +32,19 @@ To get started with the F1 Stats Web Application, follow these steps:
 
 3. **Install Dependencies:**
     Make sure you have Node.js installed, then run:
-```bash
-    npm install
+    ```bash
+      npm install
 
+4. **Running the Application**
+  Run this CLI command
+      ```bash
+      npm start
 
-## Running the Application
-  Just run the CLI command
-
-```bash
-    npm start
-    
-
-APIs Used
-This application uses the following API to fetch Formula 1 data:
+## API Used
+  This application uses the following API to fetch Formula 1 data:
 
 Ergast API: Provides race schedules and driver standings.
-Race schedules: http://ergast.com/api/f1/2024.json
-Driver standings: http://ergast.com/api/f1/current/driverStandings.json
+ - Race schedules: http://ergast.com/api/f1/2024.json
+ - Driver standings: http://ergast.com/api/f1/current/driverStandings.json
+
+
