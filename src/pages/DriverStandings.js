@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const DriverStandings = () => {
   const [standings, setStandings] = useState([]);
-  const cacheKey = 'CHNAE_THIS_KEY';
+  const cacheKey = 'f1-driver-standings';
 
   useEffect(() => {
     const cachedData = localStorage.getItem(cacheKey);

@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(() => {
+    // Check for dark mode preference in localStorage
+    const savedMode = localStorage.getItem('dark-mode');
+    if (savedMode) {
+      setDarkMode(JSON.parse(savedMode));
+      if (JSON.parse(savedMode)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, []);
+
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
+    setDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('dark-mode', JSON.stringify(newMode));
+      if (newMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      return newMode;
+    });
   };
 
   return (

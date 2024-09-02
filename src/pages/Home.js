@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const Home = () => {
   const [races, setRaces] = useState([]);
-  const cacheKey = 'Change_THIS_KEY';
+  const cacheKey = 'f1-race-schedules';
 
   useEffect(() => {
     const cachedData = localStorage.getItem(cacheKey);
